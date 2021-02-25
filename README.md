@@ -3,4 +3,7 @@ Loja Virtual desenvolvida com .Net Core usando o padrão MVC, Repository,Unity o
 
 # Aviso:
 
-Projeto em andamento... por favor, aguarde para o resultado final. 
+Projeto em andamento... por favor, aguarde para mais instruções neste arquivo e para o resultado final . 
+
+## Important
+Quer contribuir? Envie um Pull Request.
