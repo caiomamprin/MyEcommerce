@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ecommerce.Migrations
 {
     [DbContext(typeof(LojaVirtualContext))]
-    [Migration("20210220194825_NewsletterEmail")]
-    partial class NewsletterEmail
+    [Migration("20210226031520_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,23 +26,30 @@ namespace Ecommerce.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Birthday");
+                    b.Property<string>("Birthday")
+                        .IsRequired();
 
-                    b.Property<string>("CPF");
+                    b.Property<string>("CPF")
+                        .IsRequired();
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
-                    b.Property<string>("NumberPhone");
+                    b.Property<string>("NumberPhone")
+                        .IsRequired();
 
-                    b.Property<string>("Password");
+                    b.Property<string>("Password")
+                        .IsRequired();
 
-                    b.Property<string>("Sex");
+                    b.Property<string>("Sex")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
-                    b.ToTable("customers");
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("Ecommerce.Models.NewsletterEmail", b =>
@@ -51,11 +58,12 @@ namespace Ecommerce.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
-                    b.ToTable("newsletterEmails");
+                    b.ToTable("NewsletterEmails");
                 });
 #pragma warning restore 612, 618
         }
