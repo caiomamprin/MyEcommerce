@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Ecommerce.Database;
+using Ecommerce.Repositories;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -16,11 +17,11 @@ namespace Ecommerce.Controllers
 {
     public class HomeController : Controller
     {
-        private LojaVirtualContext _database;
+        private IClientRepository _repository;
 
-        public HomeController(LojaVirtualContext database)
+        public HomeController(IClientRepository repository)
         {
-            _database = database;
+            _repository = repository;
         }
 
         // GET: /<controller>/
@@ -34,9 +35,9 @@ namespace Ecommerce.Controllers
         {
             if (ModelState.IsValid)
             {
-                _database.Add(newsletterEmail);
-                _database.SaveChanges();
-                ViewData["MSG_OK"] = "Seu Email foi cadastrado!Fique atento para as ofertas imperdíveis.";
+                //_database.Add(newsletterEmail);
+                //_database.SaveChanges();
+                //ViewData["MSG_OK"] = "Seu Email foi cadastrado!Fique atento para as ofertas imperdíveis.";
                 return RedirectToAction(nameof(Index));
             }
                 return View();
@@ -103,12 +104,11 @@ namespace Ecommerce.Controllers
         }
 
         [HttpPost]
-        public IActionResult RegisterCustomer([FromForm] Client customer)
+        public IActionResult RegisterCustomer([FromForm] Client client)
         {
             if (ModelState.IsValid)
             {
-                _database.Add(customer);
-                _database.SaveChanges();
+                _repository.RegisterClient(client);
                 TempData["MSG_OK"] = "Seu cadastro foi realizado com sucesso.";
                 RedirectToAction(nameof(RegisterCustomer));
             }

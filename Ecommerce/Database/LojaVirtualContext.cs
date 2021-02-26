@@ -14,7 +14,7 @@ namespace Ecommerce.Database
 
         }
 
-        DbSet<Client> Client { get; set; }
-        DbSet<NewsletterEmail> NewsletterEmails { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<NewsletterEmail> NewsletterEmails { get; set; }
     } 
 }
