@@ -1,6 +1,5 @@
-﻿
+﻿@model Ecommerce.Models.NewsletterEmail;
 @{
-    @model Ecommerce.Models.NewsletterEmail;
     ViewData["Title"] = "Index";
 }
 
@@ -161,36 +160,35 @@
     </div>
 </main>
 
-@*@using (Html.BeginForm("home", "index", FormMethod.Post))*@
+@*@using (Html.BeginForm("home", "index", FormMethod.Post))  formNewsletterEmail *@
 @using (Html.BeginForm(null, null, null, FormMethod.Post, false, new { @action = @Url.Action("index", "home") + "#formNewsletterEmail" }))
 {
     <div class="container" id="formNewsletterEmail">
         <div class="row">
-            <div class="col-sm-8 offset-2">
-                @if (ViewData["MSG_OK"] != null)
+            <div class="col-sm-8 offset-sm-2">
+                @if (TempData["MSG_S"] != null)
                 {
-                    <p class="alert alert-success">@ViewData["MSG_OK"]</p>
+                    <p class="alert alert-success">@TempData["MSG_S"]</p>
                 }
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6 offset-2">
+            <div class="col-sm-6 offset-sm-2">
                 <div class="form-group">
-                    <label for="email">Cadastre seu email para receber as melhores promoções da LojaVirtual:</label>
+                    <label for="nome">Cadastre seu e-mail para receber promoções:</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                            <span class="input-group-text"><i class="fa fa-envelope "></i></span>
                         </div>
-                        @Html.EditorFor(model => model.Email, new { htmlAtributes = new { @class = "form-control" } })
-                        <div class="col-sm-2">
-
-                            <button class="subscribe btn btn-primary btn-block" type="submit"> Enviar </button>
-                        </div>
-                    </div> <!-- input-group.// -->
-                    <span style="color: red;">@Html.ValidationMessageFor(model => model.Email)</span>
-                </div><!-- form-group.// -->
+                        @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <span style="color: red;">@Html.ValidationMessageFor(m => m.Email)</span>
+                </div>
             </div>
-
+            <div class="col-sm-2">
+                <br />
+                <button class="subscribe btn btn-primary btn-block" type="submit" style="margin-top: 7px"> Cadastrar-se </button>
+            </div>
         </div>
     </div>
 }
