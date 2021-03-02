@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Ecommerce.Database;
-using Ecommerce.Repositories;
+using Ecommerce.Repositories.Contracts;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -17,11 +17,13 @@ namespace Ecommerce.Controllers
 {
     public class HomeController : Controller
     {
-        private IClientRepository _repository;
+        private IClientRepository _clientRepository;
+        private INewsletterRepository _newsletterRepository;
 
-        public HomeController(IClientRepository repository)
+        public HomeController(IClientRepository clientRepository, INewsletterRepository newsletterRepository)
         {
-            _repository = repository;
+            _clientRepository = clientRepository;
+            _newsletterRepository = newsletterRepository;
         }
 
         // GET: /<controller>/
@@ -35,9 +37,10 @@ namespace Ecommerce.Controllers
         {
             if (ModelState.IsValid)
             {
-                //_database.Add(newsletterEmail);
-                //_database.SaveChanges();
-                //ViewData["MSG_OK"] = "Seu Email foi cadastrado!Fique atento para as ofertas imperdíveis.";
+                //_newsletterRepository.RegisterNewsletter(newsletterEmail);
+                //ViewData["MSG_OK"] = "CADASTROU!";//"Seu Email foi cadastrado!Fique atento para as ofertas imperdíveis.";
+                TempData["MSG_S"] = "E-mail cadastrado! Agora você vai receber promoções especiais no seu e-mail! Fique atento as novidades!";
+
                 return RedirectToAction(nameof(Index));
             }
                 return View();
@@ -65,8 +68,8 @@ namespace Ecommerce.Controllers
                 if (isValid)
                 {
                 ContactMail.SendUserMail(contact);
-                //ViewData é usado para passar uma informação pra tela
-                ViewData["MSG_OK"] = "Email enviado com sucesso!";
+                    //ViewData é usado para passar uma informação pra tela
+                    TempData["MSG_OK"] = "Seu cadastro foi realizado com sucesso.";
                 }
                 else
                 {
@@ -108,7 +111,7 @@ namespace Ecommerce.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repository.RegisterClient(client);
+                //_clientRepository.RegisterClient(client);
                 TempData["MSG_OK"] = "Seu cadastro foi realizado com sucesso.";
                 RedirectToAction(nameof(RegisterCustomer));
             }

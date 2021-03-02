@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Ecommerce.Repositories
+namespace Ecommerce.Repositories.Contracts
 {
     public interface IClientRepository
     {
@@ -18,7 +18,7 @@ namespace Ecommerce.Repositories
 
         void DeleteClient(int id);
 
-        List<Client> GetAllClients();
+        IEnumerable<Client> GetAllClients();
 
     }
 }

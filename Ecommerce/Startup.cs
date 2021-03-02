@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ecommerce.Database;
 using Ecommerce.Repositories;
+using Ecommerce.Repositories.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -33,6 +34,7 @@ namespace Ecommerce
              *  USANDO SCOPED AO INVES DE TRANSIENT, P/ TER UM INSTANCIA DA CLASSE REPOSITORY POR REQUISIÇÃO
              */
             services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<INewsletterRepository, NewsletterRepository>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -40,7 +42,11 @@ namespace Ecommerce
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            /*
+             * Configurando Session 
+             */
+            services.AddSession(options => { 
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -66,7 +72,7 @@ namespace Ecommerce
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

@@ -1,5 +1,6 @@
 ﻿using Ecommerce.Database;
 using Ecommerce.Models;
+using Ecommerce.Repositories.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace Ecommerce.Repositories
             _database.SaveChanges();
         }
 
-        public List<Client> GetAllClients()
+        public IEnumerable<Client> GetAllClients()
         {
             return _database.Clients.ToList();
         }
