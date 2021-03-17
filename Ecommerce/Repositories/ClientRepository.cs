@@ -36,7 +36,7 @@ namespace Ecommerce.Repositories
 
         public Client Login(string email, string password)
         {
-            Client client =  _database.Clients.Where(m => m.Email == email && m.Password == password).First();
+            Client client =  _database.Clients.Where(m => m.Email == email && m.Password == password).FirstOrDefault();
             return client;
         }
 

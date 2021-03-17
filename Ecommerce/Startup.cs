@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ecommerce.Database;
+using Ecommerce.Libraries.Login;
+using Ecommerce.Libraries.Session;
 using Ecommerce.Repositories;
 using Ecommerce.Repositories.Contracts;
 using Microsoft.AspNetCore.Builder;
@@ -26,9 +28,14 @@ namespace Ecommerce
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            /*
+             * SESSION - INJEÇÃO DE DEPENDENCIA
+             */
+            services.AddHttpContextAccessor();
+
             /*
              *                      PADRÃO REPOSITORY 
              *  USANDO SCOPED AO INVES DE TRANSIENT, P/ TER UM INSTANCIA DA CLASSE REPOSITORY POR REQUISIÇÃO
@@ -36,17 +43,21 @@ namespace Ecommerce
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<INewsletterRepository, NewsletterRepository>();
 
-            services.Configure<CookiePolicyOptions>(options =>
+            services.Configure<CookiePolicyOptions>(options => 
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
+                
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             /*
              * Configurando Session 
              */
+            services.AddMemoryCache();
             services.AddSession(options => { 
+
             });
+            services.AddScoped<Session>();
+            services.AddScoped<LoginClient>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

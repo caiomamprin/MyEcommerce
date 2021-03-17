@@ -9,6 +9,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Ecommerce.Database;
 using Ecommerce.Repositories.Contracts;
+using Microsoft.AspNetCore.Http;
+using Ecommerce.Libraries.Login;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -17,13 +19,15 @@ namespace Ecommerce.Controllers
 {
     public class HomeController : Controller
     {
-        private IClientRepository _clientRepository;
-        private INewsletterRepository _newsletterRepository;
-
-        public HomeController(IClientRepository clientRepository, INewsletterRepository newsletterRepository)
+        private readonly IClientRepository _clientRepository;
+        private readonly INewsletterRepository _newsletterRepository;
+        private readonly LoginClient _loginClient;
+        
+        public HomeController(IClientRepository clientRepository, INewsletterRepository newsletterRepository, LoginClient loginClient)
         {
             _clientRepository = clientRepository;
             _newsletterRepository = newsletterRepository;
+            _loginClient = loginClient;
         }
 
         // GET: /<controller>/
@@ -44,7 +48,6 @@ namespace Ecommerce.Controllers
                 return RedirectToAction(nameof(Index));
             }
                 return View();
-            
         }
         public IActionResult Contact()
         {
@@ -94,12 +97,48 @@ namespace Ecommerce.Controllers
 
             //return new ContentResult() { Content = String.Format("User:{0} <br/> Email:{1}) <br/> Message:{2} <br/>", contact.Name, contact.Email, contact.Message) , ContentType="text/html"};
         }
-
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Login([FromForm]Client client)
+        {
+
+            Client clientDB = _clientRepository.Login(client.Email, client.Password);
+            
+            if(clientDB != null)
+            {
+                _loginClient.LoginSession(client);
+                return new RedirectResult(Url.Action(nameof(Painel)));
+                
+            }
+            ViewData["MSG_BAD"] = "Usuário não encontrado, verifique o email e senha digitados.";
+            return View();
+           
+
+            //ViewData["MSG_BAD"] = "Usuário não encontrado, verifique o email e senha digitado!";
+            //return View();
+            
+        }
+
+        [HttpGet]
+        public IActionResult Painel()
+        {
+
+            Client client = _loginClient.GetSessionClient();
+            if (client != null)
+            {
+                return new ContentResult() { Content = "Painel : Usuário logado" };
+            }
+            else
+            {
+                return new ContentResult() { Content = "Painel: Usuário não logado" };
+            }
+            
+        }
         [HttpGet]
         public IActionResult RegisterCustomer()
         {
@@ -111,7 +150,7 @@ namespace Ecommerce.Controllers
         {
             if (ModelState.IsValid)
             {
-                //_clientRepository.RegisterClient(client);
+                _clientRepository.RegisterClient(client);
                 TempData["MSG_OK"] = "Seu cadastro foi realizado com sucesso.";
                 RedirectToAction(nameof(RegisterCustomer));
             }
