@@ -11,6 +11,7 @@ using Ecommerce.Database;
 using Ecommerce.Repositories.Contracts;
 using Microsoft.AspNetCore.Http;
 using Ecommerce.Libraries.Login;
+using Ecommerce.Libraries.Filter;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -125,20 +126,12 @@ namespace Ecommerce.Controllers
         }
 
         [HttpGet]
+        [ClientAuth]
         public IActionResult Painel()
         {
-
-            Client client = _loginClient.GetSessionClient();
-            if (client != null)
-            {
-                return new ContentResult() { Content = "Painel : Usuário logado" };
-            }
-            else
-            {
-                return new ContentResult() { Content = "Painel: Usuário não logado" };
-            }
-            
+            return new ContentResult() { Content = "Painel do Usuário" };
         }
+
         [HttpGet]
         public IActionResult RegisterCustomer()
         {
