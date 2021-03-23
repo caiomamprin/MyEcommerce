@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Ecommerce.Libraries.Filter;
 using Ecommerce.Libraries.Login;
 using Ecommerce.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -33,16 +34,18 @@ namespace Ecommerce.Areas.Collaborator.Controllers
             if (collaboratorDB != null)
             {
                 _loginCollaborator.LoginSession(collaborator);
-                return new RedirectResult(Url.Action(nameof(Painel)));
+                return new RedirectResult(Url.Action(nameof(Dashboard)));
 
             }
             ViewData["MSG_BAD"] = "Usuário não encontrado, verifique o email e senha digitados.";
             return View();
         }
 
-        private object Painel()
+        [CollaboratorAuth]
+        public IActionResult Logout()
         {
-            throw new NotImplementedException();
+            _loginCollaborator.Logout();
+            return RedirectToAction("Login", "Home");
         }
 
         public IActionResult RecoverPassword()
@@ -51,6 +54,12 @@ namespace Ecommerce.Areas.Collaborator.Controllers
         }
 
         public IActionResult RegisterNewPassword()
+        {
+            return View();
+        }
+
+        [CollaboratorAuth]
+        public IActionResult Dashboard()
         {
             return View();
         }

@@ -72,3 +72,6 @@ C:\Estudo\Ecommerce\MyEcommerce\Ecommerce\obj\Debug\netcoreapp2.2\Razor\Areas\Co
 C:\Estudo\Ecommerce\MyEcommerce\Ecommerce\obj\Debug\netcoreapp2.2\Razor\Areas\Collaborator\Views\Home\RecoverPassword.cshtml.g.cs
 C:\Estudo\Ecommerce\MyEcommerce\Ecommerce\obj\Debug\netcoreapp2.2\Razor\Areas\Collaborator\Views\Home\RegisterNewPassword.cshtml.g.cs
 C:\Estudo\Ecommerce\MyEcommerce\Ecommerce\obj\Debug\netcoreapp2.2\Razor\Areas\Collaborator\Views\_ViewImports.cshtml.g.cs
+C:\Estudo\Ecommerce\MyEcommerce\Ecommerce\obj\Debug\netcoreapp2.2\Razor\Areas\Collaborator\Views\Shared\_Layout.cshtml.g.cs
+C:\Estudo\Ecommerce\MyEcommerce\Ecommerce\obj\Debug\netcoreapp2.2\Razor\Areas\Collaborator\Views\_ViewStart.cshtml.g.cs
+C:\Estudo\Ecommerce\MyEcommerce\Ecommerce\obj\Debug\netcoreapp2.2\Razor\Areas\Collaborator\Views\Home\Dashboard.cshtml.g.cs
