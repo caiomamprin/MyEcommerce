@@ -118,11 +118,7 @@ namespace Ecommerce.Controllers
             }
             ViewData["MSG_BAD"] = "Usuário não encontrado, verifique o email e senha digitados.";
             return View();
-           
-
-            //ViewData["MSG_BAD"] = "Usuário não encontrado, verifique o email e senha digitado!";
-            //return View();
-            
+         
         }
 
         [HttpGet]

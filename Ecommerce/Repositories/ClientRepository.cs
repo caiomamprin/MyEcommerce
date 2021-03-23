@@ -11,7 +11,7 @@ namespace Ecommerce.Repositories
     public class ClientRepository : IClientRepository
     {
 
-        private LojaVirtualContext _database;
+        private readonly LojaVirtualContext _database;
         public ClientRepository(LojaVirtualContext database)
         {
             _database = database;

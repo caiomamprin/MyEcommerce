@@ -42,6 +42,7 @@ namespace Ecommerce
              */
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<INewsletterRepository, NewsletterRepository>();
+            services.AddScoped<ICollaboratorRepository, CollaboratorRepository>();
 
             services.Configure<CookiePolicyOptions>(options => 
             {
@@ -58,6 +59,7 @@ namespace Ecommerce
             });
             services.AddScoped<Session>();
             services.AddScoped<LoginClient>();
+            services.AddScoped<LoginCollaborator>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -86,6 +88,10 @@ namespace Ecommerce
             app.UseSession();
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "areas",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                  );
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
