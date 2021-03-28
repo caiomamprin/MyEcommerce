@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Repositories
 {
-    public class CollaboratorRepository : ICollaboratorRepository
+    public class CollaboratorRepository : ICategoryepository
     {
         private readonly  LojaVirtualContext _database;
 

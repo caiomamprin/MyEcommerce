@@ -13,11 +13,11 @@ namespace Ecommerce.Areas.Collaborator.Controllers
     public class HomeController : Controller
     {
 
-        private readonly ICollaboratorRepository _collaboratorRepository;
+        private readonly ICategoryepository _categoryRepository;
         private readonly LoginCollaborator _loginCollaborator;
-        public HomeController(ICollaboratorRepository collaboratorRepository, LoginCollaborator loginCollaborator)
+        public HomeController(ICategoryepository categoryRepository, LoginCollaborator loginCollaborator)
         {
-            _collaboratorRepository = collaboratorRepository;
+            _categoryRepository = categoryRepository;
             _loginCollaborator = loginCollaborator;
         }
 
@@ -29,7 +29,7 @@ namespace Ecommerce.Areas.Collaborator.Controllers
         [HttpPost]
         public IActionResult Login([FromForm]Models.Collaborator collaborator) 
         {
-            Models.Collaborator collaboratorDB= _collaboratorRepository.Login(collaborator.Email, collaborator.Password);
+            Models.Collaborator collaboratorDB= _categoryRepository.Login(collaborator.Email, collaborator.Password);
 
             if (collaboratorDB != null)
             {

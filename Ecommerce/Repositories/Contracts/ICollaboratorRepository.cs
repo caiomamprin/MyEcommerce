@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Repositories.Contracts
 {
-    public interface ICollaboratorRepository
+    public interface ICategoryepository
     {
         Collaborator Login(string email, string password);
         void RegisterCollaborator(Collaborator collaborator);
