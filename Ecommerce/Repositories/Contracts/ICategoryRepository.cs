@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace Ecommerce.Repositories.Contracts
 {
@@ -16,6 +17,7 @@ namespace Ecommerce.Repositories.Contracts
 
         void DeleteCategory(int id);
 
+        IPagedList<Category> GetAllCategory(int? pageIndex);
         IEnumerable<Category> GetAllCategory();
     }
 }

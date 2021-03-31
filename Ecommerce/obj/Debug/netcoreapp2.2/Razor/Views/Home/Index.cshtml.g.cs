@@ -18,8 +18,18 @@ using Ecommerce.Models;
 
 #line default
 #line hidden
+#line 3 "C:\Estudo\Ecommerce\MyEcommerce\Ecommerce\Views\_ViewImports.cshtml"
+using X.PagedList.Mvc.Core;
+
+#line default
+#line hidden
+#line 4 "C:\Estudo\Ecommerce\MyEcommerce\Ecommerce\Views\_ViewImports.cshtml"
+using X.PagedList;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e7c858e99de9038524f80f7151e46cc0adfcb5eb", @"/Views/Home/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ca9b2fbf618bc7f78d1e2f0c7fce8be0aaa753ad", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8aecd047b2b5bba63f69e591be27c20d2c77fde7", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Ecommerce.Models.NewsletterEmail>
     {
         #pragma warning disable 1998

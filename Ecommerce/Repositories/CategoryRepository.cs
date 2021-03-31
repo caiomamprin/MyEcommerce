@@ -1,16 +1,18 @@
 ﻿using Ecommerce.Database;
 using Ecommerce.Models;
 using Ecommerce.Repositories.Contracts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace Ecommerce.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {
-
+        const int _pageSize = 10;
         private readonly LojaVirtualContext _database;
 
         public CategoryRepository(LojaVirtualContext database)
@@ -27,7 +29,12 @@ namespace Ecommerce.Repositories
 
         public IEnumerable<Category> GetAllCategory()
         {
-            return _database.Categories.ToList();
+            return _database.Categories;
+        }
+        IPagedList<Category> ICategoryRepository.GetAllCategory(int? pageIndex)
+        {
+            int pageNumber = pageIndex ?? 1;
+            return _database.Categories.Include(a=>a.CategoryFather).ToPagedList<Category>(pageNumber, _pageSize);
         }
 
         public Category GetCategoryById(int id)
@@ -43,11 +50,9 @@ namespace Ecommerce.Repositories
 
         public void UpdateCategory(Category category)
         {
-            if(GetCategoryById(category.Id) != null)
-            {
                 _database.Update(category);
                 _database.SaveChanges();
-            }
         }
+
     }
 }

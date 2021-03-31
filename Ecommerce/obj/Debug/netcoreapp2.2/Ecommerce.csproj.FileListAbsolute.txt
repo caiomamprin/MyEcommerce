@@ -75,3 +75,6 @@ C:\Estudo\Ecommerce\MyEcommerce\Ecommerce\obj\Debug\netcoreapp2.2\Razor\Areas\Co
 C:\Estudo\Ecommerce\MyEcommerce\Ecommerce\obj\Debug\netcoreapp2.2\Razor\Areas\Collaborator\Views\Shared\_Layout.cshtml.g.cs
 C:\Estudo\Ecommerce\MyEcommerce\Ecommerce\obj\Debug\netcoreapp2.2\Razor\Areas\Collaborator\Views\_ViewStart.cshtml.g.cs
 C:\Estudo\Ecommerce\MyEcommerce\Ecommerce\obj\Debug\netcoreapp2.2\Razor\Areas\Collaborator\Views\Home\Dashboard.cshtml.g.cs
+C:\Estudo\Ecommerce\MyEcommerce\Ecommerce\obj\Debug\netcoreapp2.2\Razor\Areas\Collaborator\Views\Category\Index.cshtml.g.cs
+C:\Estudo\Ecommerce\MyEcommerce\Ecommerce\obj\Debug\netcoreapp2.2\Razor\Areas\Collaborator\Views\Category\RegisterCategory.cshtml.g.cs
+C:\Estudo\Ecommerce\MyEcommerce\Ecommerce\obj\Debug\netcoreapp2.2\Razor\Areas\Collaborator\Views\Category\UpdateCategory.cshtml.g.cs

@@ -1,0 +1,26 @@
+﻿@model Ecommerce.Models.Category
+@{
+    ViewData["Title"] = "RegisterCategory";
+}
+
+<h1>RegisterCategory</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Name">Nome</label>
+        <input class="form-control" asp-for="Name" placeholder="Digite o nome da categoria">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Slug">Slug</label>
+        <input class="form-control" asp-for="Slug" placeholder="Digite o slug da categoria">
+        <span asp-validation-for="Slug" class="text-danger"></span>
+    </div>
+    <div class="form-group>
+        <label asp-for="CategoryFatherId">Categoria pai</label>
+        <select class="form-control" asp-for="CategoryFatherId" asp-items="@ViewBag.Categories">
+            <option value="">Selecione</option>    
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Cadastrar</button> <a asp-action="Index" class="btn btn-primary" >Voltar</a>
+</form>
