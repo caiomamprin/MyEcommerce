@@ -8,17 +8,17 @@
 <form method="post">
     <input type="hidden" asp-for="Id" />
     <div class="form-group">
-        <label asp-for="Name">Nome</label>
+        <label asp-for="Name"></label>
         <input class="form-control" asp-for="Name" placeholder="Digite o nome da categoria">
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Slug">Slug</label>
+        <label asp-for="Slug"></label>
         <input class="form-control" asp-for="Slug" placeholder="Digite o slug da categoria">
         <span asp-validation-for="Slug" class="text-danger"></span>
     </div>
     <div class="form-group>
-        <label asp-for="CategoryFatherId">Categoria pai</label>
+        <label asp-for="CategoryFatherId"></label>
         <select class="form-control" asp-for="CategoryFatherId" asp-items="@ViewBag.Categories">
             <option value="">Selecione</option>
         </select>

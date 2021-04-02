@@ -19,7 +19,7 @@ namespace Ecommerce.Libraries.Filter
             Collaborator collaborator= _loginCollaborator.GetSessionCollaborator();
             if (collaborator == null)
             {
-                context.Result = new ContentResult() { Content = "Filter: Usuário não logado" };
+                context.Result = new RedirectToActionResult("Login", "Home", null);
             }
         }
     }

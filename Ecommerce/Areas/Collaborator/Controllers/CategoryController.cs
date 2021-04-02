@@ -11,8 +11,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Ecommerce.Areas.Collaborator.Controllers
 {
     [Area("Collaborator")]
-    //TODO - Implementar Verificacao Login
-    //[C'ollaboratorAuth]
+
+    [CollaboratorAuth]
     public class CategoryController : Controller
     {
 
