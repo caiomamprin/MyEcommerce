@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Libraries.Email
 {
-    public class ContactMail
+    public class ManagerMail
     {
         public static void SendUserMail(Contact contact)
         {
@@ -17,7 +17,7 @@ namespace Ecommerce.Libraries.Email
              *  SMTP Server Configuration 
              * 
              * */
-             SmtpClient smtp = new SmtpClient(" smtp.gmail.com", 587);
+             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
              smtp.UseDefaultCredentials = false;
              smtp.Credentials = new NetworkCredential("caio@signainfo.com.br", "password");
              smtp.EnableSsl = true;

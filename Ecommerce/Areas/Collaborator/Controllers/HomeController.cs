@@ -13,9 +13,9 @@ namespace Ecommerce.Areas.Collaborator.Controllers
     public class HomeController : Controller
     {
 
-        private readonly ICategoryepository _categoryRepository;
+        private readonly ICollaboratorRepository _categoryRepository;
         private readonly LoginCollaborator _loginCollaborator;
-        public HomeController(ICategoryepository categoryRepository, LoginCollaborator loginCollaborator)
+        public HomeController(ICollaboratorRepository categoryRepository, LoginCollaborator loginCollaborator)
         {
             _categoryRepository = categoryRepository;
             _loginCollaborator = loginCollaborator;

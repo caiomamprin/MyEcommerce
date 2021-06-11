@@ -1,0 +1,27 @@
+﻿@model Ecommerce.Models.Collaborator
+@{
+    ViewData["Title"] = "RegisterCollaborator";
+}
+
+<h1>Cadastro de Colaborador</h1>
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" placeholder="Digite o nome do colaborador">
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input type="email" asp-for="Email" class="form-control" placeholder="Digite o e-mail">
+        <span asp-validation-for="Email"></span>
+    </div> 
+    <div>
+        <label asp-for="Type"></label>
+        <select class="form-control" asp-for="Type">
+            <option value="M">Gerente</option>
+            <option value="N">Funcionário</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+</form>

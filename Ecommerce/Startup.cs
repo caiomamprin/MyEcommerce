@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Ecommerce.Database;
 using Ecommerce.Libraries.Login;
@@ -42,8 +44,25 @@ namespace Ecommerce
              */
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<INewsletterRepository, NewsletterRepository>();
-            services.AddScoped<ICategoryepository, CollaboratorRepository>();
             services.AddScoped<ICategoryRepository,CategoryRepository>();
+            services.AddScoped<ICollaboratorRepository, CollaboratorRepository>();
+
+            /*
+             * SMTP
+             */
+            services.AddScoped<SmtpClient>(options => { 
+                SmtpClient smtp = new SmtpClient()
+                {
+                    Host = Configuration.GetValue<string>("Email:ServerSMTP"),
+                    Port = Configuration.GetValue<int>("Email:ServerPort"),
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(Configuration.GetValue<string>("Email:Username"), Configuration.GetValue<string>("Email:Password")),
+                    EnableSsl = true
+                };
+
+                return smtp;
+            });
+
 
             services.Configure<CookiePolicyOptions>(options => 
             {

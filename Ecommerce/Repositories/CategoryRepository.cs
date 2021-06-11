@@ -2,6 +2,7 @@
 using Ecommerce.Models;
 using Ecommerce.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,13 @@ namespace Ecommerce.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {
-        const int _pageSize = 10;
+        private readonly IConfiguration _config;
         private readonly LojaVirtualContext _database;
 
-        public CategoryRepository(LojaVirtualContext database)
+        public CategoryRepository(LojaVirtualContext database, IConfiguration config)
         {
             _database = database;
+            _config = config;
         }
 
         public void DeleteCategory(int id)
@@ -33,8 +35,9 @@ namespace Ecommerce.Repositories
         }
         IPagedList<Category> ICategoryRepository.GetAllCategory(int? pageIndex)
         {
+            int pageSize = _config.GetValue<int>("PageSize");
             int pageNumber = pageIndex ?? 1;
-            return _database.Categories.Include(a=>a.CategoryFather).ToPagedList<Category>(pageNumber, _pageSize);
+            return _database.Categories.Include(a=>a.CategoryFather).ToPagedList<Category>(pageNumber, pageSize);
         }
 
         public Category GetCategoryById(int id)

@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Ecommerce.Areas.Collaborator.Controllers
 {
     [Area("Collaborator")]
-
     [CollaboratorAuth]
     public class CategoryController : Controller
     {
@@ -79,7 +78,7 @@ namespace Ecommerce.Areas.Collaborator.Controllers
         public IActionResult DeleteCategory(int id)
         {
             _categoryRepository.DeleteCategory(id);
-            TempData["MSG_OK"] = "Categoria Alterada com sucesso!";
+            TempData["MSG_OK"] = "Categoria Excluída com sucesso!";
             return RedirectToAction(nameof(Index));
 
         }

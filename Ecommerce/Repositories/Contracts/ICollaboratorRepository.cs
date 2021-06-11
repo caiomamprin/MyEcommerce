@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace Ecommerce.Repositories.Contracts
 {
-    public interface ICategoryepository
+    public interface ICollaboratorRepository
     {
         Collaborator Login(string email, string password);
         void RegisterCollaborator(Collaborator collaborator);
@@ -14,5 +15,6 @@ namespace Ecommerce.Repositories.Contracts
         void DeleteCollaborator(int id);
         Collaborator getCollaboratorById(int id);
         IEnumerable<Collaborator> GetAllCollaborator();
+        IPagedList<Collaborator> GetAllCollaborator(int? pageIndex);
     }
 }

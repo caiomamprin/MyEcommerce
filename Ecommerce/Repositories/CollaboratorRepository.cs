@@ -1,20 +1,24 @@
 ﻿using Ecommerce.Database;
 using Ecommerce.Models;
 using Ecommerce.Repositories.Contracts;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace Ecommerce.Repositories
 {
-    public class CollaboratorRepository : ICategoryepository
+    public class CollaboratorRepository : ICollaboratorRepository
     {
+        private readonly IConfiguration _config;
         private readonly  LojaVirtualContext _database;
 
-        public CollaboratorRepository(LojaVirtualContext database)
+        public CollaboratorRepository(LojaVirtualContext database, IConfiguration config)
         {
             _database = database;
+            _config = config;
         }
 
         public void DeleteCollaborator(int id)
@@ -27,6 +31,13 @@ namespace Ecommerce.Repositories
         public IEnumerable<Collaborator> GetAllCollaborator()
         {
             return _database.Collaborators.ToList();
+        }
+
+        public IPagedList<Collaborator> GetAllCollaborator(int? pageIndex)
+        {
+            int pageSize = _config.GetValue<int>("PageSize");
+            int pageNumber = pageIndex ?? 1;
+            return _database.Collaborators.Where(model => model.Type != "M").ToPagedList<Collaborator>(pageNumber, pageSize);
         }
 
         public Collaborator getCollaboratorById(int id)

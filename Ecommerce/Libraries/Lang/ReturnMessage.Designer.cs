@@ -95,5 +95,14 @@ namespace Ecommerce.Libraries.Lang {
                 return ResourceManager.GetString("MSG_BAD004", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirmação de senha inválida..
+        /// </summary>
+        public static string MSG_BAD005 {
+            get {
+                return ResourceManager.GetString("MSG_BAD005", resourceCulture);
+            }
+        }
     }
 }

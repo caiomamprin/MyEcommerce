@@ -129,4 +129,7 @@
   <data name="MSG_BAD004" xml:space="preserve">
     <value>O campo {0} não é um email válido.</value>
   </data>
+  <data name="MSG_BAD005" xml:space="preserve">
+    <value>Confirmação de senha inválida.</value>
+  </data>
 </root>

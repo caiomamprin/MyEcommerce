@@ -71,7 +71,7 @@ namespace Ecommerce.Controllers
 
                 if (isValid)
                 {
-                ContactMail.SendUserMail(contact);
+                ManagerMail.SendUserMail(contact);
                     //ViewData é usado para passar uma informação pra tela
                     TempData["MSG_OK"] = "Seu cadastro foi realizado com sucesso.";
                 }
